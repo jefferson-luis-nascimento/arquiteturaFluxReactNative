@@ -143,4 +143,55 @@ Instalando o reactotron:
     }
 No arquivo src/index.js incluir se seguinte linha depois dos imports do react
   import './config/ReactotronConfig';
+No arquivo src/index.js deixar apenas a viem em branco
+  import React from 'react';
+  import { View } from 'react-native';
 
+  import './config/ReactotronConfig';
+
+  function App() {
+    return <View />;
+  }
+
+  export default App;
+Criar uma pasta chamada pages dentro da src
+  Criar pasta Main e dentro dela o arquivo index.js
+  Usar o snippet rnfc para crioar a estrutura do arquivo
+Instalando o component de navegação react-navigation (https://reactnavigation.org/)
+  yarn add react-navigation
+  yarn add react-native-reanimated react-native-gesture-handler react-native-screens@^1.0.0-alpha.23
+Abrir o arquivo android/app/build.gradle e inserir as linhas abaixo na parte de dependencies:
+  implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+  implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+Abrir o arquivo MainActivity.java e incluir as seguintes linhas:
+  import com.facebook.react.ReactActivityDelegate;
+  import com.facebook.react.ReactRootView;
+  import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+
+  Dentro da classe:
+      @Override
+      protected ReactActivityDelegate createReactActivityDelegate() {
+        return new ReactActivityDelegate(this, getMainComponentName()) {
+          @Override
+          protected ReactRootView createRootView() {
+            return new RNGestureHandlerEnabledRootView(MainActivity.this);
+          }
+        };
+      }
+Incluir o seguinte código no arquivo src/index:
+  import 'react-native-gesture-handler'
+Instalar o stack navigator:
+  yarn add react-navigation-stack
+Criar o arquivo routes.js dentro da pasta src e incluir o código abaixo:
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+import Main from './pages/Main';
+
+const Routes = createAppContainer(
+  createStackNavigator({
+    Main
+  })
+);
+
+export default Routes;

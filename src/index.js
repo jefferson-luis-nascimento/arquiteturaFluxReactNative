@@ -1,29 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View } from 'react-native';
+
+import 'react-native-gesture-handler';
 
 import './config/ReactotronConfig';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5fcff'
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-    margin: 10,
-    textAlign: 'center'
-  }
-});
+import Routes from './routes';
 
 function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello World</Text>
-    </View>
-  );
+  return <Routes />;
 }
 
 export default App;
