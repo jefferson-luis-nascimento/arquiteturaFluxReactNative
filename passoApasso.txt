@@ -141,4 +141,6 @@ Instalando o reactotron:
 
       tron.clear();
     }
+No arquivo src/index.js incluir se seguinte linha depois dos imports do react
+  import './config/ReactotronConfig';
 
