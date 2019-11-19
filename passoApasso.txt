@@ -9,41 +9,36 @@ Depois vai na aba debug => Add Configuration => React Native => Debug Android
 Executar os seguintes comandos, cada um em novo terminal:
   react-native run-Android
   react-native start
-Abrir o arquivo App.js e deixar com o código abaixo:
-  import React, {Component} from 'react';
-  import {
-    StyleSheet,
-    View,
-    Text,
-  } from 'react-native';
-
-  class App extends Component {
-    render() {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.title}>Hello World</Text>
-        </View>
-      );
-    }
-
-  };
+Criar uma pasta src e dentro dela, criar o arquivo index.js e incluir o seguinte código;
+  import React from 'react';
+  import { StyleSheet, View, Text } from 'react-native';
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems:'center',
+      alignItems: 'center',
       backgroundColor: '#f5fcff'
     },
     title: {
       fontSize: 24,
       fontWeight: '600',
       margin: 10,
-      textAlign: 'center',
-    },
+      textAlign: 'center'
+    }
   });
 
+  function App() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Hello World</Text>
+      </View>
+    );
+  }
+
   export default App;
+
+Excluir o arquivo App.js e deixar com o código abaixo:
 Criar o arquivo .editorconfig com o botão direito e incluir o código abaixo:
   root = true
 
@@ -129,3 +124,21 @@ Excluir o arquivo .prettierrc.js e criar o arquivo .prettierrc e incluir o segui
     "singleQuote": true,
     "traillingComa": "es5"
   }
+Instalando o reactotron:
+  Seguir o tutorial no seguinte link:
+    https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md
+    yarn add reactotron-react-native
+  Dentro da pasta src, criar a pasta config e criar o arquivo ReactotronConfig.js
+  Incluir o seguinte código no arquivo:
+    import Reactotron from 'reactotron-react-native';
+
+    if (__DEV__) {
+      const tron = Reactotron.configure()
+        .useReactNative()
+        .connect();
+
+      console.tron = tron;
+
+      tron.clear();
+    }
+
