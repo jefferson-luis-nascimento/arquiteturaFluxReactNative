@@ -1,0 +1,131 @@
+Se não estiver o ambiente para react native instalado, seguir tutorial do link abaixo:
+  https://docs.rocketseat.dev/ambiente-react-native/introducao
+Criando o projeto:
+  npx react-native init <nome do projeto>
+Após a criação do projeto, ir na pasta do projeto e executar o seguinte código:
+  code .
+No vs code, instalar a extensão React Native Tools
+Depois vai na aba debug => Add Configuration => React Native => Debug Android
+Executar os seguintes comandos, cada um em novo terminal:
+  react-native run-Android
+  react-native start
+Abrir o arquivo App.js e deixar com o código abaixo:
+  import React, {Component} from 'react';
+  import {
+    StyleSheet,
+    View,
+    Text,
+  } from 'react-native';
+
+  class App extends Component {
+    render() {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.title}>Hello World</Text>
+        </View>
+      );
+    }
+
+  };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems:'center',
+      backgroundColor: '#f5fcff'
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: '600',
+      margin: 10,
+      textAlign: 'center',
+    },
+  });
+
+  export default App;
+Criar o arquivo .editorconfig com o botão direito e incluir o código abaixo:
+  root = true
+
+  [*]
+  end_of_line = lf
+  indent_style = space
+  indent_size = 2
+  charset = utf-8
+  trim_trailing_whitespace = true
+  insert_final_newline = true
+Excluir o arquivo .eslintrc.js
+Instalar o eslint:
+  yarn add eslint -D
+Iniciar o eslint:
+  yarn eslint --init
+Escolher as seguintes opções:
+  How would you like to use ESLint?
+    To check syntax, find problems, and enforce code style
+  What type of modules does your project use?
+    JavaScript modules (import/export)
+  Which framework does your project use?
+    React
+  Does your project use TypeScript? (y/N)
+    N
+  Where does your code run?
+    Desmarcar ambos com o space
+  How would you like to define a style for your project?
+    Use a popular style guide
+  Which style guide do you want to follow?
+    Airbnb (https://github.com/airbnb/javascript)
+  What format do you want your config file to be in?
+    JavaScript
+  Would you like to install them now with npm?
+    Y
+  Excluir o arquivo package-lock.json
+  Executar o comando yarn para instalar as dependencias
+Instalar as outras dependencias de estilização de código:
+  yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint eslint-loader -D
+Substituir o conteúdo do arquivo eslintrc.js pelo de baixo
+  module.exports = {
+    env: {
+      browser: true,
+      es6: true,
+    },
+    extends: [
+      'airbnb',
+      'prettier',
+      'prettier/react',
+    ],
+    globals: {
+      Atomics: 'readonly',
+      SharedArrayBuffer: 'readonly',
+      __DEV__: 'readonly',
+    },
+    parser: 'babel-eslint',
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true,
+      },
+      ecmaVersion: 2018,
+      sourceType: 'module',
+    },
+    plugins: [
+      'react',
+      'prettier'
+    ],
+    rules: {
+      'no-console': 'off',
+      'prettier/prettier': 'error',
+      'react/jsx-filename-extension': [
+        'warn',
+        { extensions: ['.jsx', '.js']}
+      ],
+      'import/prefer-default-export': 'off',
+      'react/state-in-constructor': 'off',
+      'react/static-property-placement': 'off',
+      'react/jsx-props-no-spreading': 'off',
+    },
+  };
+
+Excluir o arquivo .prettierrc.js e criar o arquivo .prettierrc e incluir o seguinte código:
+  {
+    "singleQuote": true,
+    "traillingComa": "es5"
+  }
