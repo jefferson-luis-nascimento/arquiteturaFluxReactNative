@@ -183,15 +183,67 @@ Incluir o seguinte código no arquivo src/index:
 Instalar o stack navigator:
   yarn add react-navigation-stack
 Criar o arquivo routes.js dentro da pasta src e incluir o código abaixo:
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+  import { createAppContainer } from 'react-navigation';
+  import { createStackNavigator } from 'react-navigation-stack';
 
-import Main from './pages/Main';
+  import Main from './pages/Main';
 
-const Routes = createAppContainer(
-  createStackNavigator({
-    Main
-  })
-);
+  const Routes = createAppContainer(
+    createStackNavigator(
+      {
+        Main
+      },
+      {
+        headerLayoutPreset: 'center',
+        headerBackTitleVisible: false,
+        defaultNavigationOptions: {
+          headerStyle: {
+            backgroundColor: '#000'
+          },
+          headerTintColor: '#fff'
+        }
+      }
+    )
+  );
 
-export default Routes;
+  export default Routes;
+Substituir o conteúdo do arquivo src/index.js pelo abaixo:
+  import React from 'react';
+  import { StatusBar } from 'react-native';
+
+  import 'react-native-gesture-handler';
+
+  import './config/ReactotronConfig';
+  import Routes from './routes';
+
+  function App() {
+    return (
+      <>
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
+        <Routes />
+      </>
+    );
+  }
+
+  export default App;
+
+Instalar o styled-components:
+  yarn add styled-components
+Criar o arquivo styles.js e usar o snippet styled-rn para preencher a estrutura do arquivo
+Substituir o conteúdo do arquivo Main/index.js pelo abaixo:
+  import React from 'react';
+  import { View } from 'react-native';
+
+  import { Container } from './styles';
+
+  export default function Main() {
+    return (
+      <Container>
+        <View />
+      </Container>
+    );
+  }
+
+  Main.navigationOptions = {
+    title: 'Olá Mundo'
+  };
