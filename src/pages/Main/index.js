@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MdShoppingCart } from 'react-icons/md';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   Container,
@@ -9,11 +9,13 @@ import {
   ProductTitle,
   ProductPrice,
   AddButton,
+  AddButtonIconView,
+  AddButtonIconText,
   AddButtonView,
   AddButtonText
 } from './styles';
 
-// import api from '../../services/api';
+import api from '../../services/api';
 
 export default class Main extends Component {
   state = {
@@ -21,54 +23,9 @@ export default class Main extends Component {
   };
 
   async componentDidMount() {
-    // const response = await api.get(`products`);
+    const response = await api.get(`products`);
 
-    this.setState({
-      products: [
-        {
-          id: 1,
-          title: 'Tênis de Caminhada Leve Confortável',
-          price: 179.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg'
-        },
-        {
-          id: 2,
-          title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
-          price: 139.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg'
-        },
-        {
-          id: 3,
-          title: 'Tênis Adidas Duramo Lite 2.0',
-          price: 219.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg'
-        },
-        {
-          id: 5,
-          title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
-          price: 139.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg'
-        },
-        {
-          id: 6,
-          title: 'Tênis Adidas Duramo Lite 2.0',
-          price: 219.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg'
-        },
-        {
-          id: 4,
-          title: 'Tênis de Caminhada Leve Confortável',
-          price: 179.9,
-          image:
-            'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg'
-        }
-      ]
-    });
+    this.setState({ products: response.data });
   }
 
   render() {
@@ -76,6 +33,7 @@ export default class Main extends Component {
     return (
       <Container>
         <ProductList
+          horizontal
           data={products}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
@@ -85,8 +43,11 @@ export default class Main extends Component {
               <ProductPrice>{item.priceFormatted}</ProductPrice>
               <AddButton>
                 <AddButtonView>
-                  <MdShoppingCart size={20} />
-                  <AddButtonText>Adicionar ao carrinho</AddButtonText>
+                  <AddButtonIconView>
+                    <Icon name="add-shopping-cart" size={20} color="#fff" />
+                    <AddButtonIconText>3</AddButtonIconText>
+                  </AddButtonIconView>
+                  <AddButtonText>Adicionar</AddButtonText>
                 </AddButtonView>
               </AddButton>
             </ProductItem>

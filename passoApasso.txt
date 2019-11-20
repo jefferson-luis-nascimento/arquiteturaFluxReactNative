@@ -247,3 +247,14 @@ Substituir o conteúdo do arquivo Main/index.js pelo abaixo:
   Main.navigationOptions = {
     title: 'Olá Mundo'
   };
+
+  Instalando o icones (https://github.com/oblador/react-native-vector-icons#android):
+    yarn add react-native-vector-icons
+  Depois editar os seguintes arquivos:
+    /android/app/build.gradle, no fim do arquivo, inserir as linhas abaixo:
+      project.ext.vectoricons = [
+          iconFontNames: [ 'MaterialIcons.ttf'] // Name of the font files you want to copy
+      ]
+
+      apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
