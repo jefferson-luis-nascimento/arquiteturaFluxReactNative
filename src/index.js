@@ -5,12 +5,15 @@ import 'react-native-gesture-handler';
 
 import './config/ReactotronConfig';
 import Routes from './routes';
+import NavigationService from './services/navigation';
 
 function App() {
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#000" />
-      <Routes />
+      <Routes
+        ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
+      />
     </>
   );
 }

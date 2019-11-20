@@ -9,9 +9,9 @@ export const Container = styled.View`
 
 export const ProductList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
-  showsHorizontalScrollIndicator: false
+  showsHorizontalScrollIndicator: false,
 })`
-  margin-top: 10px;
+  margin-top: 20px;
   background: #000;
 `;
 
@@ -21,28 +21,23 @@ export const ProductItem = styled.View`
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
+  width: 220px;
 `;
 
 export const ProductImage = styled.Image`
-  align-self: center;
-  width: 250px;
-  height: 250px;
-  border-radius: 4px;
-  background: #eee;
+  height: 200px;
+  width: 200px;
 `;
 
 export const ProductTitle = styled.Text`
   font-size: 16px;
-  line-height: 20px;
-  color: #333;
-  margin-top: 5px;
-  font-weight: bold;
 `;
 
 export const ProductPrice = styled.Text`
-  font-size: 21px;
+  margin: 14px 0px;
+  font-size: 20px;
+  margin-bottom: 14px;
   font-weight: bold;
-  margin: 5px 0 20px;
 `;
 
 export const AddButtonView = styled.View`
@@ -52,6 +47,7 @@ export const AddButtonView = styled.View`
   padding: 12px;
 `;
 export const AddButton = styled(RectButton)`
+  flex-direction: row;
   background: #7159c1;
   color: #fff;
   border: 0;
@@ -66,6 +62,9 @@ export const AddButtonIconView = styled.View`
   align-items: center;
   padding: 12px;
   background: rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 12px;
 `;
 
 export const AddButtonIconText = styled.Text`

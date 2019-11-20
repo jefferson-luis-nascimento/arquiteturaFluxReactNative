@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { formatPrice } from '../../util/format';
+
 import {
   Container,
   ProductList,
@@ -12,20 +14,25 @@ import {
   AddButtonIconView,
   AddButtonIconText,
   AddButtonView,
-  AddButtonText
+  AddButtonText,
 } from './styles';
 
 import api from '../../services/api';
 
 export default class Main extends Component {
   state = {
-    products: []
+    products: [],
   };
 
   async componentDidMount() {
     const response = await api.get(`products`);
 
-    this.setState({ products: response.data });
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
+
+    this.setState({ products: data });
   }
 
   render() {
@@ -57,7 +64,3 @@ export default class Main extends Component {
     );
   }
 }
-
-Main.navigationOptions = {
-  title: 'Rocketshoes'
-};

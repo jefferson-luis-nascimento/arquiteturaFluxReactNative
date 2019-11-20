@@ -258,3 +258,8 @@ Substituir o conteúdo do arquivo Main/index.js pelo abaixo:
 
       apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
+Instalar o Intl que não yem no reat native:
+  yarn add intl
+incluir as chamadas abaixo ao usar o Intl:
+  import Intl from 'intl';
+  import 'intl/locale-data/jsonp/pt-BR';
