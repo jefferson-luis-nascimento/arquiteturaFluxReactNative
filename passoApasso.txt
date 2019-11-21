@@ -289,6 +289,12 @@ Incluir as chamadas abaixo ao usar o Intl:
     </Provider>
   Criar a pasta src/store/modules, dentro dela, criar uma pasta chamada cart e dentro do cart,
   criar o arquivo reducer.js;
+  Instalar os seguintes pacotes:
+    yarn add immer
+    yarn add redux-saga
+    yarn add reactotron-redux
+    yarn add reactotron-redux-saga
+
   Dentro da pasta modules, criar o arquivo chamado rootReducer.js e incluir o código abaixo:
     import { combineReducers } from 'redux';
 
@@ -297,5 +303,6 @@ Incluir as chamadas abaixo ao usar o Intl:
     export default combineReducers({
       cart,
     });
+
 
 

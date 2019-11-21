@@ -62,8 +62,7 @@ export const AddButtonIconView = styled.View`
   align-items: center;
   padding: 12px;
   background: rgba(0, 0, 0, 0.1);
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-radius: 4px;
   padding: 12px;
 `;
 
