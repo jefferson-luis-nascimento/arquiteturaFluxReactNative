@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const Logo = styled.Image.attrs({
-  source: logo,
+  source: { uri: logo },
   resizeMode: 'cover',
 })`
   width: 185px;
