@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import PropTypes from 'prop-types';
 
 import { Container, Logo, BasketContainer, ItemCount } from './styles';
 
