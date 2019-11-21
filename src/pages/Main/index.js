@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { formatPrice } from '../../util/format';
@@ -19,7 +21,9 @@ import {
 
 import api from '../../services/api';
 
-export default class Main extends Component {
+import * as CartActions from '../../store/modules/cart/actions';
+
+class Main extends Component {
   state = {
     products: [],
   };
@@ -35,8 +39,15 @@ export default class Main extends Component {
     this.setState({ products: data });
   }
 
+  hanleAddToCart = id => {
+    const { addToCartRequest } = this.props;
+
+    addToCartRequest(id);
+  };
+
   render() {
     const { products } = this.state;
+    const { amount } = this.props;
     return (
       <Container>
         <ProductList
@@ -48,11 +59,13 @@ export default class Main extends Component {
               <ProductImage source={{ uri: item.image }} />
               <ProductTitle>{item.title}</ProductTitle>
               <ProductPrice>{item.priceFormatted}</ProductPrice>
-              <AddButton>
+              <AddButton onPress={() => this.hanleAddToCart(item.id)}>
                 <AddButtonView>
                   <AddButtonIconView>
                     <Icon name="add-shopping-cart" size={20} color="#fff" />
-                    <AddButtonIconText>3</AddButtonIconText>
+                    <AddButtonIconText>
+                      {amount[item.id] || 0}
+                    </AddButtonIconText>
                   </AddButtonIconView>
                   <AddButtonText>Adicionar</AddButtonText>
                 </AddButtonView>
@@ -64,3 +77,15 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  amount: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount;
+    return amount;
+  }, {}),
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

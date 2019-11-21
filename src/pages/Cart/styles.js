@@ -11,10 +11,12 @@ export const Container = styled.View`
 `;
 
 export const CartList = styled.FlatList.attrs({
-  showsVerticalScrollIndicator: false,
+  showsVerticalScrollIndicator: true,
   showsHorizontalScrollIndicator: false,
 })`
   border-radius: 4px;
+  width: 100%;
+  max-height: 220px;
 `;
 
 export const CartItem = styled.View`
@@ -111,12 +113,12 @@ export const CartItemSubtotal = styled.Text`
 `;
 
 export const Total = styled.View`
-  margin: 10px;
   background: #fff;
   height: 300px;
   border-radius: 4px;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const TotalText = styled.Text`
@@ -128,7 +130,7 @@ export const TotalValue = styled.Text`
   font-size: 36px;
   font-weight: bold;
 `;
-export const FinalizeOrder = styled(RectButton)`
+export const FinalizeOrderButton = styled(RectButton)`
   margin-top: 20px;
   border: 0;
   border-radius: 4px;
@@ -138,9 +140,11 @@ export const FinalizeOrder = styled(RectButton)`
   align-items: center;
   justify-content: center;
 `;
-export const FinalizeOrderText = styled.Text`
+export const FinalizeOrderButtonText = styled.Text`
   color: #fff;
   font-size: 24px;
+  text-transform: uppercase;
+  font-weight: bold;
 `;
 
 export const EmptyCartText = styled.Text`

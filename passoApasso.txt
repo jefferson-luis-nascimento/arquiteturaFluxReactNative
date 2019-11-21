@@ -260,6 +260,42 @@ Substituir o conteúdo do arquivo Main/index.js pelo abaixo:
 
 Instalar o Intl que não yem no reat native:
   yarn add intl
-incluir as chamadas abaixo ao usar o Intl:
+Incluir as chamadas abaixo ao usar o Intl:
   import Intl from 'intl';
   import 'intl/locale-data/jsonp/pt-BR';
+
+------------Se for usar a arquiteruta flux, seguir os passos abaixo:
+  Instalar o redux e a intergração com o react, o react-redux:
+    yarn add redux react-redux
+  Criar a pasta src/store e dentro dela, o arquivo index.js e incluir o código abaixo:
+    import { createStore } from 'redux';
+
+    import rootReducer from './modules/rootReducer';
+
+    const store = createStore(rootReducer);
+
+    export default store;
+
+  No arquivo src/index.js, incluir esse import e incluir a tag<Provider> for fora de todas as tags:
+    import { Provider } from 'react-redux';
+
+    import store from './store';
+
+    <Provider store={store}>
+      <StatusBar barStyle="light-content" backgroundColor="#000" />
+      <Routes
+        ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
+      />
+    </Provider>
+  Criar a pasta src/store/modules, dentro dela, criar uma pasta chamada cart e dentro do cart,
+  criar o arquivo reducer.js;
+  Dentro da pasta modules, criar o arquivo chamado rootReducer.js e incluir o código abaixo:
+    import { combineReducers } from 'redux';
+
+    import cart from './cart/reducer';
+
+    export default combineReducers({
+      cart,
+    });
+
+
