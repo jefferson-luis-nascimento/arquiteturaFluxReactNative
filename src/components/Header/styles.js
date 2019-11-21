@@ -22,7 +22,6 @@ export const BasketContainer = styled.TouchableOpacity`
   flex: 1;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 20px;
 `;
 
 export const ItemCount = styled.Text`
