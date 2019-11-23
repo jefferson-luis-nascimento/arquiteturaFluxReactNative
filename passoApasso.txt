@@ -77,6 +77,7 @@ Escolher as seguintes opções:
   Executar o comando yarn para instalar as dependencias
 Instalar as outras dependencias de estilização de código:
   yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint eslint-loader -D
+  yarn add eslint-plugin-react-hooks -D
 Substituir o conteúdo do arquivo eslintrc.js pelo de baixo
   module.exports = {
     env: {
@@ -103,10 +104,10 @@ Substituir o conteúdo do arquivo eslintrc.js pelo de baixo
     },
     plugins: [
       'react',
-      'prettier'
+      'prettier',
+      'react-hooks'
     ],
     rules: {
-      'no-console': 'off',
       'prettier/prettier': 'error',
       'react/jsx-filename-extension': [
         'warn',
@@ -115,7 +116,10 @@ Substituir o conteúdo do arquivo eslintrc.js pelo de baixo
       'import/prefer-default-export': 'off',
       'react/state-in-constructor': 'off',
       'react/static-property-placement': 'off',
-      'react/jsx-props-no-spreading': 'off',
+      'no-console': ["error", { allow: ["tron"] }],
+      'no-param-reassign': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn'
     },
   };
 
@@ -124,6 +128,8 @@ Excluir o arquivo .prettierrc.js e criar o arquivo .prettierrc e incluir o segui
     "singleQuote": true,
     "traillingComa": "es5"
   }
+Instalando o react hooks:
+  yarn add react-hooks
 Instalando o reactotron:
   Seguir o tutorial no seguinte link:
     https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md
