@@ -78,6 +78,30 @@ Escolher as seguintes opções:
 Instalar as outras dependencias de estilização de código:
   yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint eslint-loader -D
   yarn add eslint-plugin-react-hooks -D
+  yarn add babel-plugin-root-import eslint-import-resolver-babel-plugin-root-import -D
+Substituir o conteudo do arquivo babel.config.js pelo abaixo:
+  module.exports = {
+    presets: ['module:metro-react-native-babel-preset'],
+    plugins: [
+      [
+        'babel-plugin-root-import',
+        {
+          rootPathSuffix: 'src'
+        }
+      ]
+    ]
+  };
+
+Criar o arquivo jsconfig.json com o seguinte conteudo:
+  {
+    "compilerOptions": {
+      "baseUrl": "src",
+      "paths": {
+        "~/*": ["*"]
+      }
+    }
+  }
+
 Substituir o conteúdo do arquivo eslintrc.js pelo de baixo
   module.exports = {
     env: {
@@ -109,18 +133,27 @@ Substituir o conteúdo do arquivo eslintrc.js pelo de baixo
     ],
     rules: {
       'prettier/prettier': 'error',
-      'react/jsx-filename-extension': [
-        'warn',
-        { extensions: ['.jsx', '.js']}
-      ],
+      'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
       'import/prefer-default-export': 'off',
-      'react/state-in-constructor': 'off',
-      'react/static-property-placement': 'off',
-      'no-console': ["error", { allow: ["tron"] }],
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'react/jsx-one-expression-per-line': 'off',
+      'global-require': 'off',
+      'react-native/no-raw-text': 'off',
       'no-param-reassign': 'off',
+      'no-underscore-dangle': 'off',
+      'camelcase': 'off',
+      'no-console': ['error', { allow: ['tron'] }],
       'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn'
+      'react-hooks/exhaustive-deps': 'warn',
+      'react/jsx-props-no-spreading': 'off',
     },
+    settings: {
+      'import/resolver': {
+        'babel-plugin-root-import': {
+          rootPathSuffix: 'src'
+        }
+      }
+    }
   };
 
 Excluir o arquivo .prettierrc.js e criar o arquivo .prettierrc e incluir o seguinte código:
